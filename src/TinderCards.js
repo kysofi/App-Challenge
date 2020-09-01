@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import TinderCard from "react-tinder-card";
+import "./TinderCards.css";
 
 function TinderCards(props) {
   const [people, setPeople] = useState([
     {
-      name: "steve jobs",
+      name: "Steve Jobs",
       url:
-        "https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5b8576db31358e0429c734e3%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D211%26cropX2%3D2381%26cropY1%3D900%26cropY2%3D3072",
+        "https://www.biography.com/.image/t_share/MTY2MzU3OTcxMTUwODQxNTM1/steve-jobs--david-paul-morrisbloomberg-via-getty-images.jpg",
     },
     {
-      name: "mark zuckerberg",
+      name: "Mark Zuckerberg",
       url:
-        "https://about.fb.com/wp-content/uploads/2019/01/mz.jpg?fit=1621%2C1080",
+        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fabout.fb.com%2Fmedia-gallery%2Fexecutives%2Fmark-zuckerberg%2F&psig=AOvVaw2ctpF1EGXq-UZ0LSmZSQGA&ust=1599034913283000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKiY8LHDx-sCFQAAAAAdAAAAABAI",
     },
   ]);
 
@@ -25,16 +26,22 @@ function TinderCards(props) {
   return (
     <div>
       <h1> Tinder Cards</h1>
-      {people.map((person) => (
-        <TinderCard className="swipe" key={person.name}>
-          <div
-            style={{ backgroundImage: "url( ${person.name}) " }}
-            className="card"
+      <div className="TinderCards_cardContainer">
+        {people.map((person) => (
+          <TinderCard
+            className="swipe"
+            key={person.name}
+            preventSwipe={["up,down"]}
           >
-            <h3>{person.name}</h3>
-          </div>
-        </TinderCard>
-      ))}
+            <div
+              style={{ backgroundImage: `url (${person.name})` }}
+              className="card"
+            >
+              <h3>{person.name}</h3>
+            </div>
+          </TinderCard>
+        ))}
+      </div>
     </div>
   );
 }
