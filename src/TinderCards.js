@@ -9,12 +9,17 @@ function TinderCards(props) {
   // piece of code which runs based on a condition
   useEffect(() => {
     // this is where the code runs
-    database
-      .collection(`people`)
+    const unsubscribe = database
+      .collection("people")
       .onSnapshot((snapshot) =>
         setPeople(snapshot.docs.maps((doc) => doc.data()))
       );
-  }, []);
+    return () => {
+      //this is the cleanup...header
+      unsubscribe();
+    };
+  }, [people]);
+
   // this will run ONCE when the component loads, and never again
 
   // BAD
